@@ -6,6 +6,10 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -40,7 +44,7 @@ public class QuoteApiService implements QuoteService, Serializable {
 	 * Method returns a Quote object for the given symbol parameter
 	 */
 	public Quote getQuote(String symbol) {
-		String url = generateQueryString(symbol);
+		String url = generateQueryString(new ArrayList<String>(Arrays.asList(symbol)));
 		if (url == null) {
 			logger.error("Failed to generate url for quote query with the symbol: " + symbol);
 			return null;
@@ -54,6 +58,22 @@ public class QuoteApiService implements QuoteService, Serializable {
 		logger.info("Returned message: " + result);
 		return (Quote) JsonHelper.fromJson(result, Quote.class, QUOTE);
 
+	}
+	
+	public List<Quote> getQuotes(List<String> symbols) {
+		String url = generateQueryString(symbols);
+		if (url == null) {
+			logger.error("Failed to generate url for quote query with the symbols: " + symbols.toString());
+			return null;
+		}
+		logger.info("Calling url: " + url);
+		String result = executeHttpGet(url);
+		if (result == null) {
+			logger.error("Failed to execute http get with query for symbols: " + symbols.toString() + " at url: " + url);
+			return null;
+		}
+		logger.info("Returned message: " + result);
+		return JsonHelper.quotesFromJson(result, QUOTE);
 	}
 
 	public String executeHttpGet(String url) {
@@ -84,14 +104,23 @@ public class QuoteApiService implements QuoteService, Serializable {
 		}
 	}
 
-	public String generateQueryString(String symbol) {
+	public String generateQueryString(List<String> symbols) {
 		StringBuffer sb = new StringBuffer(BASE_URL);
 		sb.append("?q=");
 		try {
 
-			sb.append(URLEncoder.encode("select * from yahoo.finance.quotes where symbol in (\"", UTF8));
-			sb.append(symbol);
-			sb.append(URLEncoder.encode("\")", UTF8));
+			sb.append(URLEncoder.encode("select * from yahoo.finance.quotes where symbol in (", UTF8));
+			Iterator<String> it = symbols.iterator();
+			while(it.hasNext()) {
+				sb.append(URLEncoder.encode("\"", UTF8));
+				sb.append(it.next());
+				sb.append(URLEncoder.encode("\"", UTF8));
+				if (it.hasNext()) {
+					sb.append(",");
+				}
+			}
+			
+			sb.append(URLEncoder.encode(")", UTF8));
 			sb.append("&format=json");
 			sb.append("&env=store%3a%2F%2Fdatatables.org%2Falltableswithkeys&callback=");
 			return sb.toString();
