@@ -7,4 +7,22 @@
   </parent>
   <artifactId>stockwatch-runtime</artifactId>
   <name>StockWatch :: Runtime</name>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>com.stockwatch</groupId>
+  		<artifactId>stockwatch-service</artifactId>
+  		<version>${stockwatch.version}</version>
+  	</dependency>
+  	  	<dependency>
+  		<groupId>com.stockwatch</groupId>
+  		<artifactId>stockwatch-api</artifactId>
+  		<version>${stockwatch.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.stockwatch</groupId>
+  		<artifactId>stockwatch-engine</artifactId>
+  		<version>${stockwatch.version}</version>
+  	</dependency>
+  </dependencies>
 </project>
