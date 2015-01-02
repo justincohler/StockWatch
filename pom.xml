@@ -38,6 +38,14 @@
 				<version>${jackson.version}</version>
 			</dependency>
 
+			<!-- Mail -->
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>1.4.7</version>
+				<scope>provided</scope>
+			</dependency>
+
 			<!-- JUnit -->
 			<dependency>
 				<groupId>junit</groupId>
@@ -78,5 +86,6 @@
 		<module>stockwatch-domain</module>
 		<module>stockwatch-runtime</module>
 		<module>stockwatch-service</module>
+		<module>stockwatch-engine</module>
 	</modules>
 </project>

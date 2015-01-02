@@ -1,18 +1,41 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.stockwatch</groupId>
-    <artifactId>stockwatch</artifactId>
-    <version>1.0-SNAPSHOT</version>
-  </parent>
-  <artifactId>stockwatch-service</artifactId>
-  <name>StockWatch :: Services</name>
-  
-  <dependencies>
-  	<dependency>
-  		<groupId>com.stockwatch</groupId>
-  		<artifactId>stockwatch-domain</artifactId>
-  		<version>${stockwatch.version}</version>
-  	</dependency>
-  </dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.stockwatch</groupId>
+		<artifactId>stockwatch</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>stockwatch-service</artifactId>
+	<name>StockWatch :: Services</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.stockwatch</groupId>
+			<artifactId>stockwatch-domain</artifactId>
+			<version>${stockwatch.version}</version>
+		</dependency>
+
+		<!-- Mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+		</dependency>
+
+		<!-- SLF4J -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+		</dependency>
+		
+		<!-- JUnit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+	</dependencies>
 </project>

@@ -44,7 +44,6 @@ public class GetQuotesTest {
 			logger.info("********************************");
 			logger.info("Symbol: " + quote.getSymbol());
 			logger.info("Previous Close: " + quote.getPreviousClose().toString());
-			logger.info("Open: " + quote.getOpen().toString());
 		}
 		logger.info("...passed.");
 
