@@ -11,44 +11,79 @@ import com.stockwatch.domain.Quote;
  *         StockeEngine performs all calculations used in the StockWatch-runtime
  *         module for trading strategies
  */
-public class StockEngine {
-
-	private static final int MAX_PERIOD = 30;
+public interface StockEngine {
 
 	/**
 	 * 
 	 * @param quotes
 	 * @return
 	 * 
-	 *  Method returns the middle b-band for a period of quotes passed in
+	 *         Method returns the middle b-band for a period of quotes passed in
 	 */
-	private Double getMiddleBand(List<Quote> quotes) {
-		//TODO
-		return null;
-	}
-	
-	/**
-	 * 
-	 * @param quotes
-	 * @return
-	 * 
-	 *  Method returns the upper b-band for a period of quotes passed in
-	 */
-	private Double getUpperBand(List<Quote> quotes) {
-		//TODO
-		return null;
-	}
+	public Double getMiddleBand(List<Quote> quotes);
 
 	/**
 	 * 
 	 * @param quotes
 	 * @return
 	 * 
-	 *  Method returns the lower b-band for a period of quotes passed in
+	 *         Method returns the upper b-band for a period of quotes passed in
 	 */
-	private Double getLowerBand(List<Quote> quotes) {
-		//TODO
-		return null;
-	}
+	public Double getUpperBand(List<Quote> quotes);
+
+	/**
+	 * 
+	 * @param quotes
+	 * @return
+	 * 
+	 *         Method returns the lower b-band for a period of quotes passed in
+	 */
+	public Double getLowerBand(List<Quote> quotes);
+
+	/**
+	 * 
+	 * @param quote
+	 * @return
+	 * 
+	 *         Method returns the central pivot for an instant quote: P = (high
+	 *         + low + close)/3
+	 */
+	public Double getCentralPivot(Quote quote);
+
+	/**
+	 * 
+	 * @param quote
+	 * @return
+	 * 
+	 *         Method returns the first resistance for an instant quote
+	 */
+	public Double getFirstResistance(Quote quote);
+
+	/**
+	 * 
+	 * @param quote
+	 * @return
+	 * 
+	 *         Method returns the first support for an instant quote
+	 */
+	public Double getFirstSupport(Quote quote);
+
+	/**
+	 * 
+	 * @param quote
+	 * @return
+	 * 
+	 *         Method returns the second resistance for an instant quote
+	 */
+	public Double getSecondResistance(Quote quote);
+
+	/**
+	 * 
+	 * @param quote
+	 * @return
+	 * 
+	 *         Method returns the second support for an instant quote
+	 */
+	public Double getSecondSupport(Quote quote);
 
 }

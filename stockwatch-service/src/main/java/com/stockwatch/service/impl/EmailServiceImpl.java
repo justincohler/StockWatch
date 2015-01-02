@@ -1,5 +1,6 @@
 package com.stockwatch.service.impl;
 
+import java.io.Serializable;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -15,7 +16,8 @@ import org.slf4j.LoggerFactory;
 
 import com.stockwatch.service.EmailService;
 
-public class EmailServiceImpl implements EmailService {
+public class EmailServiceImpl implements EmailService, Serializable {
+	private static final long serialVersionUID = -6757771051618142131L;
 
 	final static Logger logger = LoggerFactory.getLogger(EmailServiceImpl.class);
 
