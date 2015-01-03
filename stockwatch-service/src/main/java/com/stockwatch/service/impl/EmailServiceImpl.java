@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Properties;
 
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -55,7 +54,7 @@ public class EmailServiceImpl implements EmailService, Serializable {
 			logger.info("Sent message with subject: " + subject);
 			return true;
 
-		} catch (MessagingException e) {
+		} catch (Exception e) {
 			logger.error("Failed to send message with subject: " + subject);
 			logger.error("Failed with message: " + e.getMessage());
 			return false;
